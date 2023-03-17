@@ -5,6 +5,7 @@ import { Owner } from './owner.entity';
 
 describe('Owner Controller Test', () => {
   let ownerController: OwnerController;
+  let ownerService: OwnerService;
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
@@ -21,6 +22,7 @@ describe('Owner Controller Test', () => {
     }).compile();
 
     ownerController = moduleRef.get<OwnerController>(OwnerController);
+    ownerService = moduleRef.get<OwnerService>(OwnerService);
   });
 
   it('should be defined', () => {
@@ -29,9 +31,9 @@ describe('Owner Controller Test', () => {
   });
 
   it('should create new owner', async () => {
-    const expectedResult = {} as Owner;
+    const expectedResult = { id: 1, name: 'John Doe', purchaseDate: 0, car: {} } as Owner;
     jest
-      .spyOn(ownerController, 'createOwner')
+      .spyOn(ownerService, 'createOwner')
       .mockImplementation(() => Promise.resolve(expectedResult));
 
     const result = await ownerController.createOwner({ name: 'John Doe', carId: 1 });

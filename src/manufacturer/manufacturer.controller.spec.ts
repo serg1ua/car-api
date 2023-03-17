@@ -39,7 +39,7 @@ describe('Manufacturer Controller Test', () => {
       .spyOn(manufacturerService, 'updateManufacturer')
       .mockImplementation(() => Promise.resolve(expectedResult));
 
-    const result = await manufacturerService.updateManufacturer(1, { phone: '1 (800) xxx xx xx', siret: 123 });
+    const result = await manufacturerController.updateManufacturer(1, { phone: '1 (800) xxx xx xx', siret: 123 });
 
     expect(result).toBe(expectedResult);
   });

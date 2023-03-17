@@ -26,7 +26,7 @@ Run:
 ```shell
 npm i
 npm run db:up
-npm run cars:dev
+npm run start:dev
 ```
 
 Navigate to <http://localhost:3000/api> to use Swagger
@@ -39,7 +39,7 @@ Run:
 
 ```shell
 npm i
-npm run cars
+npm run car
 ```
 
  The server is running on <http://localhost:3000>
@@ -47,7 +47,7 @@ npm run cars
 Stop:
 
 ```shell
-npm run cars:stop
+npm run car:stop
 ```
 
 ## Tests

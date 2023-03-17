@@ -85,20 +85,20 @@ describe('AppController (e2e)', () => {
       price: 12000
     };
 
-    const { statusCode } = await request(app.getHttpServer())
+    const { body } = await request(app.getHttpServer())
       .put(`/car/${car.id}`)
       .send(carUpdate)
       .expect(200);
 
-    expect(statusCode).toBe(200);
+    expect(body).toBeDefined();
   });
 
   it('/car/:id (DELETE)', async () => {
-    const { statusCode } = await request(app.getHttpServer())
+    const { body } = await request(app.getHttpServer())
       .delete(`/car/${car.id}`)
       .expect(200);
 
-    expect(statusCode).toBe(200);
+    expect(body).toBeDefined();
   });
 
   afterAll(async () => {
