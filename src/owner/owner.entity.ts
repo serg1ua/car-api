@@ -12,10 +12,6 @@ export class Owner {
   @Column({ type: 'int8', nullable: false })
   purchaseDate: number;
 
-  @ManyToOne(
-    () => Car,
-    car => car.owners,
-    { onDelete: 'CASCADE' },
-  )
+  @ManyToOne(() => Car, (car) => car.owners, { onDelete: 'CASCADE' })
   car: Car;
 }

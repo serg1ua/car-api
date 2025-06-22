@@ -31,12 +31,20 @@ describe('Owner Controller Test', () => {
   });
 
   it('should create new owner', async () => {
-    const expectedResult = { id: 1, name: 'John Doe', purchaseDate: 0, car: {} } as Owner;
+    const expectedResult = {
+      id: 1,
+      name: 'John Doe',
+      purchaseDate: 0,
+      car: {},
+    } as Owner;
     jest
       .spyOn(ownerService, 'createOwner')
       .mockImplementation(() => Promise.resolve(expectedResult));
 
-    const result = await ownerController.createOwner({ name: 'John Doe', carId: 1 });
+    const result = await ownerController.createOwner({
+      name: 'John Doe',
+      carId: 1,
+    });
 
     expect(result).toBe(expectedResult);
   });

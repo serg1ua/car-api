@@ -1,5 +1,13 @@
 import { ApiTags } from '@nestjs/swagger';
-import { Controller, Get, Put, Post, Delete, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Put,
+  Post,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { CarService } from './car.service';
 import { Car } from './car.entity';
 import { CreateCarDto } from './dto/create-car.dto';
@@ -32,7 +40,10 @@ export class CarController {
   }
 
   @Put(':id')
-  async updateCar(@Param('id') id: number, @Body() dto: UpdateCarDto): Promise<number> {
+  async updateCar(
+    @Param('id') id: number,
+    @Body() dto: UpdateCarDto,
+  ): Promise<number> {
     return this.carService.updateCar(id, dto);
   }
 

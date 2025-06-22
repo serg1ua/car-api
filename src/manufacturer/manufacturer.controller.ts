@@ -9,7 +9,10 @@ export class ManufacturerController {
   constructor(private manufacturersService: ManufacturerService) {}
 
   @Put(':id')
-  async updateManufacturer(@Param('id') id: number, @Body() dto: UpdateManufacturerDto): Promise<number> {
+  async updateManufacturer(
+    @Param('id') id: number,
+    @Body() dto: UpdateManufacturerDto,
+  ): Promise<number> {
     return this.manufacturersService.updateManufacturer(id, dto);
   }
 }

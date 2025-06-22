@@ -19,9 +19,8 @@ describe('Manufacturer Controller Test', () => {
       ],
     }).compile();
 
-    manufacturerService = moduleRef.get<ManufacturerService>(
-      ManufacturerService,
-    );
+    manufacturerService =
+      moduleRef.get<ManufacturerService>(ManufacturerService);
     manufacturerController = moduleRef.get<ManufacturerController>(
       ManufacturerController,
     );
@@ -39,7 +38,10 @@ describe('Manufacturer Controller Test', () => {
       .spyOn(manufacturerService, 'updateManufacturer')
       .mockImplementation(() => Promise.resolve(expectedResult));
 
-    const result = await manufacturerController.updateManufacturer(1, { phone: '1 (800) xxx xx xx', siret: 123 });
+    const result = await manufacturerController.updateManufacturer(1, {
+      phone: '1 (800) xxx xx xx',
+      siret: 123,
+    });
 
     expect(result).toBe(expectedResult);
   });

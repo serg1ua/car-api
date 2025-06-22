@@ -11,7 +11,8 @@ export class OwnerService {
   constructor(
     private readonly configService: ConfigService,
     private readonly carService: CarService,
-    @InjectRepository(Owner) private readonly ownerRepository: Repository<Owner>,
+    @InjectRepository(Owner)
+    private readonly ownerRepository: Repository<Owner>,
   ) {}
 
   async createOwner(dto: CreateOwnerDto): Promise<Owner> {
@@ -20,7 +21,7 @@ export class OwnerService {
     const newOwner = {
       car,
       name: dto.name,
-      purchaseDate: Date.now()
+      purchaseDate: Date.now(),
     };
 
     const owner = this.ownerRepository.create(newOwner);
@@ -28,7 +29,9 @@ export class OwnerService {
     try {
       return await this.ownerRepository.save(owner);
     } catch (error) {
-      throw new InternalServerErrorException('Error creating new owner', { cause: error });
+      throw new InternalServerErrorException('Error creating new owner', {
+        cause: error,
+      });
     }
   }
 
@@ -46,7 +49,12 @@ export class OwnerService {
       }
       return owners;
     } catch (error) {
-      throw new InternalServerErrorException('An error occurred while deleting users', { cause: error });
+      throw new InternalServerErrorException(
+        'An error occurred while deleting users',
+        {
+          cause: error,
+        },
+      );
     }
   }
 }
