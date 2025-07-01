@@ -8,7 +8,7 @@ import { ManufacturersModule } from './manufacturer/manufacturer.module';
 import { Manufacturer } from './manufacturer/manufacturer.entity';
 import { Owner } from './owner/owner.entity';
 import { Car } from './car/car.entity';
-import config, { CarApiEnvironment } from './config';
+import config from './config';
 
 @Module({
   imports: [
@@ -24,8 +24,6 @@ import config, { CarApiEnvironment } from './config';
         password: configService.get<string>('POSTGRES_PASSWORD'),
         database: configService.get<string>('POSTGRES_DB'),
         entities: [Car, Manufacturer, Owner],
-        synchronize:
-          configService.get<string>('NODE_ENV') === CarApiEnvironment.DEV,
       }),
       inject: [ConfigService],
     }),
