@@ -1,14 +1,22 @@
-import 'dotenv/config';
 import { DataSource } from 'typeorm';
+import config from './src/config';
+
+const {
+  POSTGRES_HOST,
+  POSTGRES_PORT,
+  POSTGRES_USER,
+  POSTGRES_PASSWORD,
+  POSTGRES_DB,
+} = config();
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: process.env['POSTGRES_HOST'] || 'localhost',
-  port: Number(process.env['POSTGRES_PORT'] || '5432'),
-  username: process.env['POSTGRES_USER'],
-  password: process.env['POSTGRES_PASSWORD'],
-  database: process.env['POSTGRES_DB'],
+  host: POSTGRES_HOST,
+  port: POSTGRES_PORT,
+  username: POSTGRES_USER,
+  password: POSTGRES_PASSWORD,
+  database: POSTGRES_DB,
   entities: ['src/**/*.entity.ts'],
-  migrations: ['src/migrations/*.ts'],
+  migrations: ['src/migration/*.ts'],
   logging: true,
 });

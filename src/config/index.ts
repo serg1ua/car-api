@@ -1,4 +1,5 @@
-// TODO: check dotenv
+import 'dotenv/config';
+
 export enum CarApiEnvironment {
   DEV = 'dev',
   TEST = 'test',
