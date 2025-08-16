@@ -1,12 +1,19 @@
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Injectable, NotFoundException, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { UpdateManufacturerDto } from './dto/update-manufacturer.dto';
 import { Manufacturer } from './manufacturer.entity';
 
 @Injectable()
 export class ManufacturerService {
-  constructor(@InjectRepository(Manufacturer) private readonly manufacturerRepository: Repository<Manufacturer>) {}
+  constructor(
+    @InjectRepository(Manufacturer)
+    private readonly manufacturerRepository: Repository<Manufacturer>,
+  ) {}
 
   async createManufacturer(name: string): Promise<Manufacturer> {
     try {
@@ -19,16 +26,24 @@ export class ManufacturerService {
       const newManufacturer = {
         name,
         phone: null,
-        siret: null
+        siret: null,
       };
       const manufacturer = this.manufacturerRepository.create(newManufacturer);
       return await this.manufacturerRepository.save(manufacturer);
     } catch (error) {
-      throw new InternalServerErrorException('Something went wrong, while creating manufacturer', { cause: error });
+      throw new InternalServerErrorException(
+        'Something went wrong, while creating manufacturer',
+        {
+          cause: error,
+        },
+      );
     }
   }
 
-  async updateManufacturer(id: number, dto: UpdateManufacturerDto): Promise<number> {
+  async updateManufacturer(
+    id: number,
+    dto: UpdateManufacturerDto,
+  ): Promise<number> {
     try {
       const result = await this.manufacturerRepository.update(id, dto);
       if (result?.affected) {
@@ -36,7 +51,12 @@ export class ManufacturerService {
       }
       throw new NotFoundException(`Manufacturer with id ${id} is nor found`);
     } catch (error) {
-      throw new InternalServerErrorException('Something went wrong, while fetching manufacturer', { cause: error });
+      throw new InternalServerErrorException(
+        'Something went wrong, while fetching manufacturer',
+        {
+          cause: error,
+        },
+      );
     }
   }
 }

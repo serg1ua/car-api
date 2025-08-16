@@ -76,7 +76,10 @@ describe('Car Controller Test', () => {
       .spyOn(carService, 'createCar')
       .mockImplementation(() => Promise.resolve(expectedResult));
 
-    const result = await carController.createCar({ manufacturerName: 'Ford', price: 1200 });
+    const result = await carController.createCar({
+      manufacturerName: 'Ford',
+      price: 1200,
+    });
 
     expect(result).toBe(expectedResult);
   });

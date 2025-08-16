@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, AfterLoad } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+  AfterLoad,
+} from 'typeorm';
 import { Manufacturer } from '../manufacturer/manufacturer.entity';
 import { Owner } from '../owner/owner.entity';
 import config from '../config';
@@ -20,11 +27,10 @@ export class Car {
   @Column({ type: 'int8', nullable: false })
   firstRegistrationDate: number;
 
-  @OneToMany(
-    () => Owner,
-    (owner: Owner) => owner.car,
-    { cascade: true, eager: true },
-  )
+  @OneToMany(() => Owner, (owner: Owner) => owner.car, {
+    cascade: true,
+    eager: true,
+  })
   owners: Owner[];
 
   @AfterLoad()

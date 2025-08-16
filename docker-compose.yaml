@@ -1,10 +1,9 @@
-version: "3.8"
 services:
   postgres:
     container_name: postgres_cars
     image: postgres:latest
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
     env_file:
@@ -17,7 +16,7 @@ services:
     env_file:
       - .env.production
     ports:
-      - "3000:3000"
+      - '3000:3000'
 
 volumes:
   db:

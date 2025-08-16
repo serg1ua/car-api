@@ -1,6 +1,10 @@
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Injectable, NotFoundException, InternalServerErrorException, } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { Car } from './car.entity';
 import { Manufacturer } from '../manufacturer/manufacturer.entity';
 import { ManufacturerService } from '../manufacturer/manufacturer.service';
@@ -41,23 +45,32 @@ export class CarService {
     if (car) {
       return car.manufacturer;
     }
-    throw new NotFoundException(`Manufacturer for car with id: ${id} is not found`);
+    throw new NotFoundException(
+      `Manufacturer for car with id: ${id} is not found`,
+    );
   }
 
   async createCar(dto: CreateCarDto): Promise<Car> {
-    const manufacturer = await this.manufacturerService.createManufacturer(dto.manufacturerName);
+    const manufacturer = await this.manufacturerService.createManufacturer(
+      dto.manufacturerName,
+    );
 
     const newCar = {
       manufacturer,
       price: dto.price,
-      firstRegistrationDate: Date.now()
+      firstRegistrationDate: Date.now(),
     };
     const car = this.carRepository.create(newCar);
 
     try {
       return await this.carRepository.save(car);
     } catch (error) {
-      throw new InternalServerErrorException('Something went wrong, while creating a car', { cause: error });
+      throw new InternalServerErrorException(
+        'Something went wrong, while creating a car',
+        {
+          cause: error,
+        },
+      );
     }
   }
 
@@ -69,7 +82,12 @@ export class CarService {
       }
       throw new NotFoundException(`Car with id: ${id} is not found`);
     } catch (error) {
-      throw new InternalServerErrorException('Something went wrong, while handling update', { cause: error });
+      throw new InternalServerErrorException(
+        'Something went wrong, while handling update',
+        {
+          cause: error,
+        },
+      );
     }
   }
 
@@ -81,7 +99,12 @@ export class CarService {
       }
       throw new NotFoundException(`Car with id: ${id} is not found`);
     } catch (error) {
-      throw new InternalServerErrorException('Something went wrong, while deleting a car', { cause: error });
+      throw new InternalServerErrorException(
+        'Something went wrong, while deleting a car',
+        {
+          cause: error,
+        },
+      );
     }
   }
 }

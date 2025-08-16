@@ -2,7 +2,7 @@
 
 ## Environment
 
-* Create .env and .env.production files in the root directory with the following content
+- Create .env and .env.production files in the root directory with the following content
 
 ```shell
   NODE_ENV=dev # production
@@ -15,6 +15,14 @@
   DISCOUNT=20
   START_MONTH=12
   END_MONTH=18
+```
+
+## Migration
+
+- Generate migrations
+
+```shell
+  npm run migration:generate --name={migrationName}
 ```
 
 ## Development
@@ -42,7 +50,7 @@ npm i
 npm run car
 ```
 
- The server is running on <http://localhost:3000>
+The server is running on <http://localhost:3000>
 
 Stop:
 
@@ -52,13 +60,13 @@ npm run car:stop
 
 ## Tests
 
-* To run unit tests, run:
+- To run unit tests, run:
 
 ```shell
 npm run test
 ```
 
-* To run e2e tests:
+- To run e2e tests:
 
 ```shell
 npm i

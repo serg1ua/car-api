@@ -24,7 +24,6 @@ import config from './config';
         password: configService.get<string>('POSTGRES_PASSWORD'),
         database: configService.get<string>('POSTGRES_DB'),
         entities: [Car, Manufacturer, Owner],
-        synchronize: true,
       }),
       inject: [ConfigService],
     }),

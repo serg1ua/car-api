@@ -38,9 +38,7 @@ describe('AppController (e2e)', () => {
   });
 
   it('/car (GET)', async () => {
-    const { body } = await request(app.getHttpServer())
-      .get('/car')
-      .expect(200);
+    const { body } = await request(app.getHttpServer()).get('/car').expect(200);
 
     expect(body).toBeInstanceOf(Array);
     car = body[0];
@@ -49,7 +47,7 @@ describe('AppController (e2e)', () => {
         id: expect.any(Number),
         price: expect.any(Number),
         firstRegistrationDate: expect.any(String),
-        owners: expect.any(Array)
+        owners: expect.any(Array),
       });
     }
   });
@@ -63,7 +61,7 @@ describe('AppController (e2e)', () => {
       id: expect.any(Number),
       price: expect.any(Number),
       firstRegistrationDate: expect.any(String),
-      owners: expect.any(Array)
+      owners: expect.any(Array),
     });
   });
 
@@ -82,7 +80,7 @@ describe('AppController (e2e)', () => {
 
   it('/car/:id (PUT)', async () => {
     const carUpdate = {
-      price: 12000
+      price: 12000,
     };
 
     const { body } = await request(app.getHttpServer())

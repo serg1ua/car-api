@@ -15,9 +15,6 @@ export class Manufacturer {
   @Column({ nullable: true })
   siret: number;
 
-  @OneToMany(
-    () => Car,
-    (car: Car) => car.manufacturer,
-  )
+  @OneToMany(() => Car, (car: Car) => car.manufacturer)
   cars: Car[];
 }
